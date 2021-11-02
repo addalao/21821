@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import axios from "axios";
-import store from "store";
 
 export default class Login extends Component {
   render() {
@@ -16,9 +15,7 @@ export default class Login extends Component {
           .then(
             (respones) => {
               const { data } = respones;
-              //存储数据给local
-              store.set("user", data);
-
+              console.log("登录成功：", data);
               this.props.history.replace("/admin");
             },
             (error) => {
