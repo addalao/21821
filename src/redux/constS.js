@@ -2,3 +2,4 @@
 
 export const DEMO1 = "demo1"
 export const DEMO2 = "demo2"
+export const CHANGETITLE = "changetitle"

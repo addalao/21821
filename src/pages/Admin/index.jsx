@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Layout } from "antd";
 import { Route, Redirect, Switch } from "react-router-dom";
+import axios from "axios";
 
 import Letfnvu from "../../components/Admin-left-nvu";
 import Header from "../../components/Admin-header";
@@ -11,15 +12,29 @@ import Role from "../../pages/Role";
 import Commodity from "../commodity/CommodityManagement";
 import Opt1 from "../Chart/Opt1";
 import Opt2 from "../Chart/Opt2";
-import { ceshi, ceshi2 } from "../../redux/app_action";
 import store from "../../redux/store";
 export default class Admin extends Component {
-  demo1 = () => {
-    store.dispatch(ceshi("商品......."));
+  state = {
+    weather: "",
   };
-  demo2 = () => {
-    store.dispatch(ceshi2("chengger"));
-  };
+
+  componentDidMount() {
+    axios
+      .get(
+        "https://restapi.amap.com/v3/weather/weatherInfo?key=f0ae5f78621c325432aa2d1bd3ce241d&city=530100"
+      )
+      .then(
+        (respones) => {
+          this.setState({
+            weather: respones.data.lives[0].weather,
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
   render() {
     const { Content } = Layout;
 
@@ -40,31 +55,30 @@ export default class Admin extends Component {
               >
                 <div className="Home">
                   <div className="Home-top">
-                    <span>首页</span>
-                    <span>时间,\</span>
+                    <span>{store.getState().adminReduceer} </span>
+                    <span>时间,天气:{this.state.weather}</span>
                   </div>
                   <div className="Home-buttm">
                     home
-                    <br />
-                    <button onClick={this.demo1}>redux测试1</button>
-                    <br />
-                    <button onClick={this.demo2}>redux测试2</button>
-                    <br />
-                    <span>redux信息显示 {store.getState()}</span>
+                    <Switch>
+                      <Route
+                        path="/admin/category"
+                        component={Category}
+                      ></Route>
+                      <Route
+                        path="/admin/commodity"
+                        component={Commodity}
+                      ></Route>
+                      <Route path="/admin/user" component={User}></Route>
+                      <Route path="/admin/Role" component={Role}></Route>
+                      <Route path="/admin/ChartOpt1" component={Opt1}></Route>
+                      <Route path="/admin/ChartOpt2" component={Opt2}></Route>
+                      <Redirect to="/admin/home" />
+                    </Switch>
                   </div>
                 </div>
-                <Switch>
-                  {/* <Route path="/admin/home" component={Home}></Route> */}
-                  <Route path="/admin/category" component={Category}></Route>
-                  <Route path="/admin/commodity" component={Commodity}></Route>
-                  <Route path="/admin/user" component={User}></Route>
-                  <Route path="/admin/Role" component={Role}></Route>
-                  <Route path="/admin/ChartOpt1" component={Opt1}></Route>
-                  <Route path="/admin/ChartOpt2" component={Opt2}></Route>
-                  <Redirect to="/admin/home" />
-                </Switch>
               </Content>
-              <div id="Admin-buttm">底部={store.getState()}</div>
+              <div id="Admin-buttm">底部</div>
             </Layout>
           </Layout>
         </Layout>

@@ -5,14 +5,14 @@ import { withRouter } from "react-router";
 
 import logo from "../../pages/Login/img/bg2.png";
 import Menulist from "../../config/menuConfig";
+import store from "../../redux/store";
+import { changetitle } from "../../redux/app_action";
 
 class letfnvu extends Component {
   openkey = "";
-  push = (pathname) => {
+  push = (pathname, title) => {
     return () => {
-      /* this.setState({
-        path: this.props.location.pathname,
-      }); */
+      store.dispatch(changetitle(title));
       if (this.props.history.location.pathname !== pathname) {
         this.props.history.push(pathname);
       }
@@ -28,7 +28,7 @@ class letfnvu extends Component {
           <Menu.Item key={item.key}>
             <div
               style={{ cursor: "pointer", width: "100%", height: "100%" }}
-              onClick={this.push(item.key)}
+              onClick={this.push(item.key, item.title)}
             >
               {item.title}
             </div>
