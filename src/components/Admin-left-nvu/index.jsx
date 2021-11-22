@@ -11,7 +11,7 @@ import { changetitle } from "../../redux/app_action";
 class letfnvu extends Component {
   openkey = "";
   push = (pathname, title) => {
-    return () => {
+    return () => { 
       store.dispatch(changetitle(title));
       if (this.props.history.location.pathname !== pathname) {
         this.props.history.push(pathname);

@@ -9,7 +9,14 @@ export default class CategoryManagement extends Component {
         title: "操作",
         dataIndex: "",
         key: "x",
-        render: () => <a href="##">Delete</a>,
+        render: () => (
+          <div style={{ marginLeft: 0, width: 250 }}>
+            <a href="##" style={{ marginRight: 20 }}>
+              修改分类
+            </a>
+            <a href="##">查看子分类</a>
+          </div>
+        ),
       },
     ];
     const data = [
