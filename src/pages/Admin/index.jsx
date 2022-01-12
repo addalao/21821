@@ -37,7 +37,7 @@ export default class Admin extends Component {
 
   render() {
     const { Content } = Layout;
-
+    console.log("11", store.getState("1"));
     return (
       <div id="admin">
         <Layout id="Layout">
@@ -55,7 +55,7 @@ export default class Admin extends Component {
               >
                 <div className="Home">
                   <div className="Home-top">
-                    <span>{store.getState().adminReduceer} </span>
+                    <span>。{store.getState().adminReduceer} </span>
                     <span>时间,天气:{this.state.weather}</span>
                   </div>
                   <div className="Home-buttm">

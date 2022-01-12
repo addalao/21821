@@ -11,7 +11,8 @@ import { changetitle } from "../../redux/app_action";
 class letfnvu extends Component {
   openkey = "";
   push = (pathname, title) => {
-    return () => { 
+    return () => {
+      //向stor存入title字符串
       store.dispatch(changetitle(title));
       if (this.props.history.location.pathname !== pathname) {
         this.props.history.push(pathname);
@@ -51,11 +52,11 @@ class letfnvu extends Component {
       }
     });
   };
-  UNSAFE_componentWillMount() {
+  /*  UNSAFE_componentWillMount() {
     this.menuNodes = this.getMenuNodes(Menulist);
-  }
+  } */
   render() {
-    const menuNodes = this.menuNodes;
+    /* const menuNodes = this.menuNodes; */
     const { Sider } = Layout;
     var path = this.props.location.pathname;
     if (path === "/admin") {
@@ -74,7 +75,7 @@ class letfnvu extends Component {
           defaultOpenKeys={[this.openkey]}
           style={{ borderRight: 0, background: "#fafafa" }}
         >
-          {menuNodes}
+          {this.getMenuNodes(Menulist)}
         </Menu>
       </Sider>
     );

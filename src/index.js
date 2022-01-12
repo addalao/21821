@@ -9,6 +9,7 @@ import App from './App';
 ReactDOM.render(
     <BrowserRouter><App /></BrowserRouter>
     , document.getElementById("root"))
+//监测变化刷新视图
 storea.subscribe(() => {
     ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById("root"))
 })

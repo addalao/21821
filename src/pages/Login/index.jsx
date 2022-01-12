@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Checkbox, message } from "antd";
+import { Form, Input, Button, message } from "antd";
 import axios from "axios";
 
 export default class Login extends Component {
@@ -80,7 +80,7 @@ export default class Login extends Component {
             wrapperCol={{ offset: 8, span: 16 }}
           >
             <div className="Itemz">
-              <Checkbox>记住我</Checkbox>
+              <div> </div>
               <Button type="link" onClick={registerUser}>
                 注册用户
               </Button>
