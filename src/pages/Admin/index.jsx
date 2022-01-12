@@ -37,7 +37,7 @@ export default class Admin extends Component {
 
   render() {
     const { Content } = Layout;
-    console.log("11", store.getState("1"));
+
     return (
       <div id="admin">
         <Layout id="Layout">

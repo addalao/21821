@@ -7,9 +7,23 @@ import logo from "../../pages/Login/img/bg2.png";
 import Menulist from "../../config/menuConfig";
 import store from "../../redux/store";
 import { changetitle } from "../../redux/app_action";
+import { CHANGETITLE } from "../../redux/constS";
 
 class letfnvu extends Component {
-  openkey = "";
+  componentDidMount() {
+    //挂载时
+    store.dispatch(
+      changetitle(
+        sessionStorage.getItem(CHANGETITLE) === null
+          ? "首页"
+          : sessionStorage.getItem(CHANGETITLE)
+      )
+    );
+  }
+  componentWillUnmount() {
+    //卸载时
+    sessionStorage.setItem(CHANGETITLE, "首页");
+  }
   push = (pathname, title) => {
     return () => {
       //向stor存入title字符串
@@ -56,6 +70,7 @@ class letfnvu extends Component {
     this.menuNodes = this.getMenuNodes(Menulist);
   } */
   render() {
+    console.log(localStorage.getItem(CHANGETITLE));
     /* const menuNodes = this.menuNodes; */
     const { Sider } = Layout;
     var path = this.props.location.pathname;

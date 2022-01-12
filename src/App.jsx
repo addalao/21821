@@ -6,9 +6,12 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Linklogin from "./pages/Linklogin";
 import Register from "./pages/Register";
-
+import { CHANGETITLE } from "./redux/constS";
 /* import { Redirect } from "react-router-dom"; */
 export default class App extends Component {
+  componentWillUnmount() {
+    localStorage.setItem(CHANGETITLE, "首页");
+  }
   render() {
     return (
       <div id="app">
